@@ -5,6 +5,7 @@ var level = 0;
 var started = false;
 
 function nextSequence() {
+  $(".start").text("start");
   level++;
   userClickedPattern = [];
   var randomNumber = Math.floor(Math.random() * 3) + 1;
