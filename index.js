@@ -40,50 +40,34 @@ function animatePress(currentColor) {
   }, 100);
 }
 
-function checkAnswer(currentLevel) {
- if(window.innerWidth<=1028){
-  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("sucsess");
-    if (userClickedPattern.length === gamePattern.length) {
-      setTimeout(function () {
-        nextSequence();
-      }, 1000);
-    }
-  } else {
-    console.log("failure");
-    var wrong = new Audio("sounds/wrong.mp3");
-    wrong.play();
-    $("body").addClass("game-over");
-    setTimeout(function () {
-      $("body").removeClass("game-over");
-    }, 200);
-    $("h1").text("Game Over!");
-    $(".start").text("restart");
-    startOver();
-  }
- }
- else{
-  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("sucsess");
-    if (userClickedPattern.length === gamePattern.length) {
-      setTimeout(function () {
-        nextSequence();
-      }, 1000);
-    }
-  } else {
-    console.log("failure");
-    var wrong = new Audio("sounds/wrong.mp3");
-    wrong.play();
-    $("body").addClass("game-over");
-    setTimeout(function () {
-      $("body").removeClass("game-over");
-    }, 200);
-    $("h1").text("Game Over, Press any key to restart!");
-    startOver();
-  }
- }
-}
 
+function checkAnswer(currentLevel) {
+  if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+    console.log("sucsess");
+    if (userClickedPattern.length === gamePattern.length) {
+      setTimeout(function () {
+        nextSequence();
+      }, 1000);
+    }
+  }
+   else {
+    console.log("failure");
+    var wrong = new Audio("sounds/wrong.mp3");
+    wrong.play();
+    $("body").addClass("game-over");
+    setTimeout(function () {
+      $("body").removeClass("game-over");
+    }, 200);
+    if(window.innerWidth<=1028){
+     $("h1").text("Game Over!");
+    $(".start").text("restart");
+    }
+    else{
+     $("h1").text("Game Over, Press any key to restart!");
+    }
+    startOver();
+}
+}
 function startOver() {
   level = 0;
   started = false;
