@@ -40,14 +40,6 @@ function animatePress(currentColor) {
   }, 100);
 }
 
-$(document).keydown(function () {
-  if (!started) {
-    $("h1").text("Level " + level);
-    nextSequence();
-    started = true;
-  }
-});
-
 function checkAnswer(currentLevel) {
   if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
     console.log("sucsess");
@@ -66,12 +58,28 @@ function checkAnswer(currentLevel) {
     }, 200);
     $("h1").text("Game Over, Press any key to restart!");
     startOver();
-    
   }
 }
 
 function startOver() {
-    level = 0; 
-    started = false;
-    gamePattern = [];
+  level = 0;
+  started = false;
+  gamePattern = [];
+}
+if (window.innerWidth <= 1028) {
+  $(".start").click(function () {
+    if (!started) {
+      $("h1").text("Level " + level);
+      nextSequence();
+      started = true;
+    }
+  });
+} else {
+  $(document).keydown(function () {
+    if (!started) {
+      $("h1").text("Level " + level);
+      nextSequence();
+      started = true;
+    }
+  });
 }
